@@ -17,6 +17,10 @@
                  <f:checkbox />
              </f:entry>
 
+             <f:entry title="restart on succeded" field="restartOnSucceded">
+                 <f:checkbox />
+             </f:entry>
+
              <j:if test="${app.labels.size() gt 1 || app.clouds.size() gt 0}">
                  <f:entry title="${%Label Expression}" field="assignedLabelString">
                      <f:textbox autoCompleteDelimChar=" " value="${setupConfigItems.assignedLabelString}"/>

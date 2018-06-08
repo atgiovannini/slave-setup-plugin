@@ -36,6 +36,15 @@ public class Utils {
     }
 
     /**
+     * Gets true for Unix based OS using line separators
+     * @param lineSeparator String with new line chars
+     * @return boolean true for Unix and false for Win32
+     */
+    public static boolean isUnixBySeparator(String lineSeparator) {
+        return lineSeparator == "\n" ? true : false;
+    }
+
+    /**
      * Given full path from OS, returns os End of line separator
      * 
      * @param someFullPath String with non relative path to any file/folder

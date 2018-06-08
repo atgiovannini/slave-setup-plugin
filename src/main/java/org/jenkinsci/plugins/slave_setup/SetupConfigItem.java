@@ -38,6 +38,10 @@ public class SetupConfigItem extends AbstractDescribableImpl<SetupConfigItem> {
      * set to true to execute setup script on save of the main jenkins configuration page
      */
     private boolean deployNow;
+    /**
+     * set to true to restart slave when script ends succesfully
+     */
+    private boolean restartOnSucceded;
 
     /**
      * jenkins label to be assigned to this setup config
@@ -56,12 +60,13 @@ public class SetupConfigItem extends AbstractDescribableImpl<SetupConfigItem> {
      */
     @DataBoundConstructor
     public SetupConfigItem(String prepareScript, File filesDir, String commandLine, boolean deployNow, 
-    String assignedLabelString) {
+    String assignedLabelString, boolean restartOnSucceded) {
         this.prepareScript = prepareScript;
         this.filesDir = filesDir;
         this.commandLine = commandLine;
         this.deployNow = deployNow;
         this.assignedLabelString = assignedLabelString;
+        this.restartOnSucceded = restartOnSucceded;
     }
 
     /**
@@ -70,7 +75,19 @@ public class SetupConfigItem extends AbstractDescribableImpl<SetupConfigItem> {
     public SetupConfigItem() {
     }
 
+    /**
+     * @return if required to restart when finish script
+     */
+    public boolean getRestartOnSucceded(){
+        return this.restartOnSucceded;
+    }
 
+    /**
+     * @param value set to restart when finish script if true
+     */
+    public void setRestartOnSucceded(boolean value){
+        this.restartOnSucceded = value;
+    }
     /**
      * Returns the prepare script code.
      *

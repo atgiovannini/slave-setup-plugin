@@ -1,0 +1,11 @@
+<div>
+    If checked, at succeded install of this Slave setup, will restart slave service.
+
+    <p>
+    Windows slaves will call `powershell -command "Restart-Service MSSQLSERVER -Force"`
+        and needs Administrator rights to execute it
+        
+    <p>
+    Linux slaves will call `sudo /etc/init.d/jenkins restart`
+        ands needs to be in sudoers as nopasswd.
+</div>

@@ -286,6 +286,22 @@ public class Components {
         }
         // Add to cache in order to prevent reinstall this version.
         this.addCache(installInfo.remoteCache());
+
+        if(installInfo.getRestartOnSucceded())
+        {
+            this.closeConfigStream();  // Update last installation in slave
+ 
+            String restartScript;
+
+            if(Utils.isUnixBySeparator(this.remoteSeparator))
+                restartScript = "sudo /etc/init.d/jenkins restart";  // Actually we expect that unix restart was this line
+                //TODO: In other updates will enable to use custom script line to do restart service
+            else
+                restartScript = "START powershell -command \"Restart-Service %SERVICE_ID% -Force\"";
+            
+            validateResponse(Utils.multiOsExecutor(listener, restartScript, remotePath, enviroment));
+
+        }
     }
 
     /**
